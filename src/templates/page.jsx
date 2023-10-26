@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { useLocation } from "@reach/router"
 import { BuilderComponent, builder, Builder } from "@builder.io/react"
 
 builder.init("0e78fadf34594a87b1bda6eb8d249f7a")
@@ -57,17 +58,18 @@ Builder.registerComponent(DoctorDetails, {
 function PageTemplate({ data }) {
   const models = data?.allBuilderModels
   const page = models.page?.content
-  const searchParams = new URLSearchParams(window.location.search)
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
 
   const [apiEndpointDat, setApiEndPointData] = React.useState({})
   const [loader, setLoader] = React.useState(false)
 
   const getData = async () => {
     const PCMID = searchParams.get("PCMID")
-    console.log({ PCMID })
     try {
       const apiData = await fetch(
         `https://devdash.askadmissionsthree.in/ask/feed?bid=1&format=json&PCMID=${PCMID}`
+        // `https://devdash.askadmissionsthree.in/ask/feed?bid=1&format=json&PCMID=498`
       )
       const apiRes = await apiData.json()
 
