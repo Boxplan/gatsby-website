@@ -46,7 +46,8 @@ module.exports = {
       options: {
         publicAPIKey: "0e78fadf34594a87b1bda6eb8d249f7a",
         templates: {
-          page: path.resolve("src/templates/page.jsx"),
+          // page: path.resolve("src/templates/page.jsx"),
+          page: path.resolve("src/templates/templatepage.jsx"),
         },
       },
     },
